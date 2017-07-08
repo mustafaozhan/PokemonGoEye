@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Pokemon Go\'nun Gözü</string>
+    <string name="banner_ad_unit_id_1">ca-app-pub-xx/xx</string>
+    <string name="banner_ad_unit_id_2">ca-app-pub-xx/xx</string>
+    <string name="start_eye_text">Pokemon Go\'nun Gözünü her</string>
+    <string name="minutes">dakika için</string>
+    <string name="only_online">Sadece Online</string>
+    <string name="online_unstable">Online ve kararsız</string>
+    <string name="start">Pokemon Go\'nun Gözünü başlat</string>
+    <string name="current_state">Serverin Şuanki Durumu</string>
+    <string name="trainer_account">Pokemon Trainer Club Account</string>
+    <string name="google_account">Google Hesabı</string>
+    <string name="check">Kontrol Et !</string>
+    <string name="started">Pokemon Go\'nun Gözü başladı !</string>
+    <string name="name">Pokemon Go\'nun Gözü</string>
+    <string name="you_can_play">Artık Pokemon Go Oynayabilirsiniz !</string>
+
+    <string name="interstitial1">ca-app-pub-xx/xx</string>
+    <string name="interstitial2">ca-app-pub-xx/xx</string>
+
+</resources>

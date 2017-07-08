@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#37474f"
+    tools:context="com.ozhan.mustafa.pokemongoeye.MainActivity">
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id_1"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"></com.google.android.gms.ads.AdView>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/current_state"
+        android:textColor="#b2dfdb"
+        android:textSize="20dp"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/startPokemonGoEye"
+        android:layout_centerHorizontal="true" />
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/radioGroup2">
+        <RadioButton
+            android:id="@+id/radioGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/google_account"
+            android:textColor="#b2dfdb" />
+        <RadioButton
+            android:id="@+id/radioTrainerClub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+         android:text="@string/trainer_account"
+            android:textColor="#b2dfdb" />
+    </RadioGroup>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CHECK !"
+
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/radioGroup"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_eye_text"
+        android:textColor="#b2dfdb"
+        android:layout_below="@+id/adView_3"
+        android:layout_alignStart="@+id/adView_3"
+        android:layout_marginTop="19dp" />
+    <EditText
+        android:id="@+id/howManyMinutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="#b2dfdb"
+        android:layout_below="@+id/adView_3"
+        android:layout_toStartOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView2" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/minutes"
+        android:textColor="#b2dfdb"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_alignEnd="@+id/adView_3" />
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/howManyMinutes"
+        android:layout_centerHorizontal="true">
+        <RadioButton
+            android:id="@+id/radioOnlyOnline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/only_online"
+            android:textColor="#b2dfdb" />
+        <RadioButton
+            android:id="@+id/radioOnlineAndUnstable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/online_unstable"
+            android:textColor="#b2dfdb" />
+    </RadioGroup>
+    <Button
+        android:id="@+id/startPokemonGoEye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/radioGroup2"
+        android:layout_centerHorizontal="true" />
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id_2"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/adView_1" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:background="@drawable/asd"
+        android:id="@+id/imageView"
+        android:layout_alignBottom="@+id/calculator"
+        android:layout_toStartOf="@+id/calculator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  Pokemon GO Evolution Calculator"
+        android:textSize="18dp"
+        android:textColor="#80cbc4"
+        android:id="@+id/calculator"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

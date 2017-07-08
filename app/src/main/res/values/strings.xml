@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Eye of Pokemon Go</string>
+    <string name="banner_ad_unit_id_1">ca-app-pub-xx/xx</string>
+    <string name="banner_ad_unit_id_2">ca-app-pub-xx/xx</string>
+    <string name="start_eye_text">Start Eye of Pokemon Go every</string>
+    <string name="minutes">minute(s)</string>
+    <string name="only_online">Only Online</string>
+    <string name="online_unstable">Online and Unstable</string>
+    <string name="start">Start Eye of Pokemon Go</string>
+    <string name="current_state">Current State of Server</string>
+    <string name="google_account">Google Account</string>
+    <string name="trainer_account">Pokemon Trainer Club Account</string>
+    <string name="check">CHECK !</string>
+    <string name="started">Eye of Pokemon Go started !</string>
+    <string name="name">Eye of Pokemon Go</string>
+    <string name="you_can_play">Now You can Play Pokemon Go !</string>
+    <string name="interstitial1">ca-app-pub-xx/xx</string>
+    <string name="interstitial2">ca-app-pub-xx/xx</string>
+</resources>
