@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         mAdView2.loadAd(adRequest2);
 
 
-        interstitial1.setAdUnitId(String.valueOf(R.string.interstitial1));
-        interstitial2.setAdUnitId(String.valueOf(R.string.interstitial2));
+        interstitial1.setAdUnitId(getString(R.string.interstitial1));
+        interstitial2.setAdUnitId(getString(R.string.interstitial2));
 /*
         // Load an ad into the AdMob banner view.
         AdView adView = (AdView) findViewById(R.id.adView);
