@@ -1,5 +1,6 @@
 package com.ozhan.mustafa.pokemongoeye;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.Color;
@@ -47,25 +48,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv = (TextView) findViewById(R.id.textView);
-        button = (Button) findViewById(R.id.button);
-        googleRadio = (RadioButton) findViewById(R.id.radioGoogle);
-        trainerClubRadio = (RadioButton) findViewById(R.id.radioTrainerClub);
-        howManyMinutes = (EditText) findViewById(R.id.howManyMinutes);
-        startPokemonGoEye = (Button) findViewById(R.id.startPokemonGoEye);
-        onlyOnlineRadio = (RadioButton) findViewById(R.id.radioOnlyOnline);
-        onlineAndUnstableRadio = (RadioButton) findViewById(R.id.radioOnlineAndUnstable);
-        cal = (TextView) findViewById(R.id.calculator);
+        tv = findViewById(R.id.textView);
+        button = findViewById(R.id.button);
+        googleRadio = findViewById(R.id.radioGoogle);
+        trainerClubRadio = findViewById(R.id.radioTrainerClub);
+        howManyMinutes =  findViewById(R.id.howManyMinutes);
+        startPokemonGoEye =  findViewById(R.id.startPokemonGoEye);
+        onlyOnlineRadio =  findViewById(R.id.radioOnlyOnline);
+        onlineAndUnstableRadio = findViewById(R.id.radioOnlineAndUnstable);
+        cal =  findViewById(R.id.calculator);
 
         howManyMinutes.setText("5");
 
 
-        AdView mAdView1 = (AdView) findViewById(R.id.adView_1);
+        AdView mAdView1 =  findViewById(R.id.adView_1);
         AdRequest adRequest1 = new AdRequest.Builder().build();
 
         mAdView1.loadAd(adRequest1);
 
-        AdView mAdView2 = (AdView) findViewById(R.id.adView_3);
+        AdView mAdView2 =  findViewById(R.id.adView_3);
         AdRequest adRequest2 = new AdRequest.Builder().build();
 
         mAdView2.loadAd(adRequest2);
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         button.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
                 if (googleRadio.isChecked()) {
@@ -228,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             HttpURLConnection urlConnection = null;
-            String result = "";
+            StringBuilder result = new StringBuilder();
             try {
                 URL url = new URL(urlCheck);
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -236,16 +238,14 @@ public class MainActivity extends AppCompatActivity {
 
                 if (code == 200) {
                     InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                    if (in != null) {
-                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
-                        String line = "";
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+                    String line;
 
-                        while ((line = bufferedReader.readLine()) != null)
-                            result += line;
-                    }
+                    while ((line = bufferedReader.readLine()) != null)
+                        result.append(line);
                     in.close();
                 }
-                return result;
+                return result.toString();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -253,9 +253,10 @@ public class MainActivity extends AppCompatActivity {
             } finally {
                 urlConnection.disconnect();
             }
-            return result;
+            return result.toString();
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
