@@ -23,6 +23,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -43,30 +44,34 @@ public class MainActivity extends AppCompatActivity {
     InterstitialAd interstitial1 = new InterstitialAd(this);
     InterstitialAd interstitial2 = new InterstitialAd(this);
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
         tv = findViewById(R.id.textView);
         button = findViewById(R.id.button);
         googleRadio = findViewById(R.id.radioGoogle);
         trainerClubRadio = findViewById(R.id.radioTrainerClub);
-        howManyMinutes =  findViewById(R.id.howManyMinutes);
-        startPokemonGoEye =  findViewById(R.id.startPokemonGoEye);
-        onlyOnlineRadio =  findViewById(R.id.radioOnlyOnline);
+        howManyMinutes = findViewById(R.id.howManyMinutes);
+        startPokemonGoEye = findViewById(R.id.startPokemonGoEye);
+        onlyOnlineRadio = findViewById(R.id.radioOnlyOnline);
         onlineAndUnstableRadio = findViewById(R.id.radioOnlineAndUnstable);
-        cal =  findViewById(R.id.calculator);
+        cal = findViewById(R.id.calculator);
 
         howManyMinutes.setText("5");
 
 
-        AdView mAdView1 =  findViewById(R.id.adView_1);
+        AdView mAdView1 = findViewById(R.id.adView_1);
         AdRequest adRequest1 = new AdRequest.Builder().build();
 
         mAdView1.loadAd(adRequest1);
 
-        AdView mAdView2 =  findViewById(R.id.adView_3);
+        AdView mAdView2 = findViewById(R.id.adView_3);
         AdRequest adRequest2 = new AdRequest.Builder().build();
 
         mAdView2.loadAd(adRequest2);

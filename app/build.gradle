@@ -22,6 +22,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-core:11.6.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:26.1.0'
@@ -32,3 +33,5 @@ repositories {
     mavenCentral()
     google()
 }
+
+apply plugin: 'com.google.gms.google-services'
