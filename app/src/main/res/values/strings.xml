@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Eye of Pokemon Go</string>
-    <string name="banner_ad_unit_id_1">ca-app-pub-5403338283729031/6884082105</string>
-    <string name="banner_ad_unit_id_2">ca-app-pub-5403338283729031/7802412103</string>
+
     <string name="start_eye_text">Start Eye of Pokemon Go every</string>
     <string name="minutes">minute(s)</string>
     <string name="only_online">Only Online</string>
@@ -14,6 +13,14 @@
     <string name="started">Eye of Pokemon Go started !</string>
     <string name="name">Eye of Pokemon Go</string>
     <string name="you_can_play">Now You can Play Pokemon Go !</string>
-    <string name="interstitial1">ca-app-pub-5403338283729031/4042230103</string>
-    <string name="interstitial2">ca-app-pub-5403338283729031/5910631303</string>
+    <!--<string name="banner_ad_unit_id_1">ca-app-pub-5403338283729031/6884082105</string>-->
+    <!--<string name="banner_ad_unit_id_2">ca-app-pub-5403338283729031/7802412103</string>-->
+    <!--<string name="interstitial1">ca-app-pub-5403338283729031/4042230103</string>-->
+    <!--<string name="interstitial2">ca-app-pub-5403338283729031/5910631303</string>-->
+    <string name="banner_ad_unit_id_1">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit_id_2">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial1">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="interstitial2">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="newImg">new</string>
+    <string name="pokemon_go_evolution_calculator">Pokemon GO Evolution Calculator</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.ozhan.mustafa.pokemongoeye
+package com.ozhan.mustafa.pokemongoeye.util
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi

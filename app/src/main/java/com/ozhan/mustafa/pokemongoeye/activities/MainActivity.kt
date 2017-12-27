@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package com.ozhan.mustafa.pokemongoeye
+package com.ozhan.mustafa.pokemongoeye.activities
 
 import android.annotation.SuppressLint
 import android.app.NotificationManager
@@ -12,6 +12,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.NotificationCompat
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 
 import com.google.android.gms.ads.AdListener
@@ -19,21 +21,15 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.ozhan.mustafa.pokemongoeye.util.NotificationListener
+import com.ozhan.mustafa.pokemongoeye.R
+import com.ozhan.mustafa.pokemongoeye.util.HttpHandler
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
 
-import java.io.BufferedInputStream
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.MalformedURLException
-import java.net.URL
 
 class MainActivity : AppCompatActivity() {
-
     var urlCheck: String? = null
-
     var interstitial1 = InterstitialAd(this)
     var interstitial2 = InterstitialAd(this)
 
@@ -44,31 +40,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
+
+        setListeners()
         howManyMinutes.setText("5")
         showBannerAd()
         interstitial1.adUnitId = getString(R.string.interstitial1)
 
+    }
 
-
+    private fun setListeners() {
         calculator.setOnClickListener {
-           calculatorInterstitialAd()
-
-            val intent = Intent(this@MainActivity, Browser::class.java)
+            calculatorInterstitialAd()
+            val intent = Intent(this@MainActivity, BrowserActivity::class.java)
             startActivity(intent)
         }
-
         button.setOnClickListener {
+            textView.setTextColor(Color.WHITE)
             if (radioGoogle.isChecked)
                 urlCheck = "http://cmmcd.com/PokemonGo/"
-            else if (radioTrainerClub.isChecked)
+            if (radioTrainerClub.isChecked)
                 urlCheck = "http://cmmcd.com/PokemonTrainerClub/"
-
             textView.text = "Checking.."
             getData()
         }
-        startPokemonGoEye.setOnClickListener {
-            startPokemonGoEye()
-        }
+        startPokemonGoEye.setOnClickListener { startPokemonGoEye() }
     }
 
     private fun calculatorInterstitialAd() {
@@ -103,37 +98,33 @@ class MainActivity : AppCompatActivity() {
                     override fun run() {
 
                         if (radioOnlyOnline.isChecked) {
-                            if (radioGoogle.isChecked) {
+                            if (radioGoogle.isChecked)
                                 urlCheck = "http://cmmcd.com/PokemonGo/"
-                            } else if (radioTrainerClub.isChecked) {
+                            if (radioTrainerClub.isChecked)
                                 urlCheck = "http://cmmcd.com/PokemonTrainerClub/"
-                            }
+
                             getData()
-                            if (textView.text.toString() === "Online") {
+                            if (textView.text.toString() == "Online") {
                                 val intent = Intent(this@MainActivity, NotificationListener::class.java)
                                 startService(intent)
                                 create()
                             }
 
                         } else if (radioOnlineAndUnstable.isChecked) {
-                            if (radioGoogle.isChecked) {
+                            if (radioGoogle.isChecked)
                                 urlCheck = "http://cmmcd.com/PokemonGo/"
-
-                            } else if (radioTrainerClub.isChecked) {
+                            else if (radioTrainerClub.isChecked)
                                 urlCheck = "http://cmmcd.com/PokemonTrainerClub/"
-
-                            }
                             getData()
-                            if (textView.text.toString() === "Online" || textView.text.toString() === "Unstable") {
-
+                            if (textView.text.toString() == "Online" || textView.text.toString() == "Unstable") {
                                 val intent = Intent(this@MainActivity, NotificationListener::class.java)
                                 startService(intent)
                                 create()
                             }
                         }
-                        handler.postDelayed(this, (Integer.parseInt(howManyMinutes.text.toString()) * 60000).toLong())
+                        handler.postDelayed(this, (howManyMinutes.text.toString().toInt() * 60000).toLong())
                     }
-                }, (Integer.parseInt(howManyMinutes.text.toString()) * 60000).toLong())
+                }, (howManyMinutes.text.toString().toInt() * 60000).toLong())
 
                 minimizeApp()
                 Toast.makeText(this@MainActivity, R.string.started, Toast.LENGTH_SHORT).show()
@@ -142,57 +133,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getData() {
-        var temp: String? = null
+
         doAsync {
-            var urlConnection: HttpURLConnection? = null
-            val result = StringBuilder()
-            try {
-                val url = URL(urlCheck)
-                urlConnection = url.openConnection() as HttpURLConnection
-                val code = urlConnection.responseCode
-
-                if (code == 200) {
-                    val `in` = BufferedInputStream(urlConnection.inputStream)
-                    val bufferedReader = BufferedReader(InputStreamReader(`in`))
-                    var line: String
-
-                    while (bufferedReader.readLine() != null) {
-                        line = bufferedReader.readLine()
-                        result.append(line)
-                    }
-                    `in`.close()
-                }
-                temp = result.toString()
-            } catch (e: MalformedURLException) {
-                e.printStackTrace()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                urlConnection!!.disconnect()
-            }
-            temp = result.toString()
-
-            kotlin.run {
-
-
-                val online = "Online!"
-                val ofline = "Ofline!"
-                val unstable = "Unstable!"
+            val myString = HttpHandler().makeServiceCall(urlCheck!!)
+            Log.d("asdsada", myString
+            )
+            runOnUiThread {
                 when {
-                    temp!!.contains(online) -> {
+                    myString.contains("Online!") -> {
                         textView.text = "Online"
                         textView.setTextColor(Color.GREEN)
                     }
-                    temp!!.contains(unstable) -> {
+                    myString.contains("Unstable!") -> {
                         textView.text = "Unstable"
                         textView.setTextColor(Color.YELLOW)
                     }
-                    temp!!.contains(ofline) -> {
-                        textView.text = "Ofline"
+                    myString.contains("Offline!") -> {
+                        textView.text = "Offline"
                         textView.setTextColor(Color.RED)
                     }
                     else -> {
-                        textView.text = "Ofline"
+                        textView.text = "Offline"
                         textView.setTextColor(Color.RED)
                     }
                 }
@@ -244,5 +205,4 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
 }

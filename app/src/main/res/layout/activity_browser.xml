@@ -9,7 +9,7 @@
 
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="com.ozhan.mustafa.pokemongoeye.Browser">
+    tools:context="com.ozhan.mustafa.pokemongoeye.activities.BrowserActivity">
 
 
     <WebView
