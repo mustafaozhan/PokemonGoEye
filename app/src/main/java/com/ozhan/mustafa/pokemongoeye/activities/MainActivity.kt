@@ -13,7 +13,6 @@ import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.NotificationCompat
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 
 import com.google.android.gms.ads.AdListener
@@ -194,7 +193,7 @@ class MainActivity : AppCompatActivity() {
         nComp.setSound(uri)
         nComp.setContentTitle("Eye of Pokemon Go")
         nComp.setContentText("Now you can play Pokemon Go!")
-        nComp.setSmallIcon(R.mipmap.ic_launcher)
+        nComp.setSmallIcon(R.drawable.notification_icon)
         nComp.setAutoCancel(true)
         nManager.notify(System.currentTimeMillis().toInt(), nComp.build())
 
