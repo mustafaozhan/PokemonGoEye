@@ -10,8 +10,8 @@ android {
         applicationId "com.ozhan.mustafa.pokemongoeye"
         minSdkVersion 18
         targetSdkVersion 26
-        versionCode 24
-        versionName "2.8"
+        versionCode 25
+        versionName "3.0"
     }
     buildTypes {
         release {

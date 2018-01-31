@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         howManyMinutes.setText("5")
         showBannerAd()
         interstitial1.adUnitId = getString(R.string.interstitial1)
+        interstitial2.adUnitId = getString(R.string.interstitial2)
 
     }
 
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculatorInterstitialAd() {
-        interstitial2.adUnitId = getString(R.string.interstitial2)
+
         val adRequest1 = AdRequest.Builder().build()
         interstitial2.loadAd(adRequest1)
         interstitial2.adListener = object : AdListener() {
@@ -132,6 +133,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getData() {
 
         doAsync {
